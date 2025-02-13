@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import './ActiveInactiveFilter.component.css';
 import { ActiveInactiveFilterState } from './Filters.types';
+import FilterOptionsComponent from './FilterOptions.component';
 
 interface ActiveInactiveFilterComponentParams {
   initialState: ActiveInactiveFilterState;
@@ -14,25 +16,16 @@ const ActiveInactiveFilterComponent = ({ initialState, onChange }: ActiveInactiv
 
   return (
     <>
-      <div onClick={() => setIsListVisible(!isListVisible)}>
+      <div onClick={() => setIsListVisible(!isListVisible)} className="app-filters-active-container">
         <span>{state}</span>
-        <ul style={{ listStyle: 'none', visibility: isListVisible ? 'visible' : 'hidden' }}>
-          <li>
-            <a href="#" onClick={() => setState(ActiveInactiveFilterState.all)}>
-              <span>{ActiveInactiveFilterState.all}</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={() => setState(ActiveInactiveFilterState.active)}>
-              <span>{ActiveInactiveFilterState.active}</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={() => setState(ActiveInactiveFilterState.sold)}>
-              <span>{ActiveInactiveFilterState.sold}</span>
-            </a>
-          </li>
-        </ul>
+        {isListVisible ? (
+          <FilterOptionsComponent
+            items={[ActiveInactiveFilterState.all, ActiveInactiveFilterState.active, ActiveInactiveFilterState.sold]}
+            onChange={(clickedDirection: string) => setState(clickedDirection as ActiveInactiveFilterState)}
+          />
+        ) : (
+          ''
+        )}
       </div>
     </>
   );

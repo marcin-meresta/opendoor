@@ -4,6 +4,7 @@ export interface ListingAddress {
 
 export interface ListingUserData {
   linkToPhotos?: string | null;
+  askingPrice: number;
 }
 
 export enum ListingZillowDataHomeStatus {

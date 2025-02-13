@@ -1,0 +1,24 @@
+.app-filters-container {
+  width: 100%;
+  padding: 22px 0;
+  .app-filters-header {
+    h1 {
+      font-size: 1rem;
+      line-height: 1.15;
+      font-family: Graphik-Bold;
+      font-weight: bold;
+    }
+    .app-filters-header-description {
+      font-size: 0.875rem;
+      line-height: 1.5rem;
+      height: 1.5rem;
+      margin-bottom: 32px;
+    }
+  }
+
+  .app-filters-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

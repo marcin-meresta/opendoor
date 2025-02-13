@@ -1,0 +1,8 @@
+.app-listings-container {
+  display: flex;
+  padding: 0 32px;
+  flex-direction: column;
+  max-height: calc(100vh - 78px);
+  width: 100%;
+  overflow-y: scroll;
+}

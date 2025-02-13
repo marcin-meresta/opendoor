@@ -1,5 +1,7 @@
+import './OrderFilter.component.css';
 import { useEffect, useState } from 'react';
 import { SortingOrderDirection } from './Filters.types';
+import FilterOptionsComponent from './FilterOptions.component';
 
 interface OrderFilterComponentParams {
   initialOrder: SortingOrderDirection;
@@ -7,27 +9,23 @@ interface OrderFilterComponentParams {
 }
 
 const OrderFilterComponent = ({ initialOrder, onChange }: OrderFilterComponentParams) => {
-  const [direction, setDirection] = useState(initialOrder);
+  const [direction, setDirection] = useState<SortingOrderDirection>(initialOrder);
   const [isListVisible, setIsListVisible] = useState(false);
 
   useEffect(() => onChange(direction), [direction, onChange]);
 
   return (
     <>
-      <div onClick={() => setIsListVisible(!isListVisible)}>
+      <div className="app-filters-order-container" onClick={() => setIsListVisible(!isListVisible)}>
         <span>{direction}</span>
-        <ul style={{ listStyle: 'none', visibility: isListVisible ? 'visible' : 'hidden' }}>
-          <li>
-            <a href="#" onClick={() => setDirection(SortingOrderDirection.newest)}>
-              {SortingOrderDirection.newest}
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={() => setDirection(SortingOrderDirection.oldest)}>
-              {SortingOrderDirection.oldest}
-            </a>
-          </li>
-        </ul>
+        {isListVisible ? (
+          <FilterOptionsComponent
+            items={[SortingOrderDirection.newest, SortingOrderDirection.oldest]}
+            onChange={(clickedDirection: string) => setDirection(clickedDirection as SortingOrderDirection)}
+          />
+        ) : (
+          ''
+        )}
       </div>
     </>
   );

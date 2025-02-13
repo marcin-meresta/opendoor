@@ -1,0 +1,6 @@
+.app-map-wrapper {
+  img {
+    max-height: calc(100vh - 78px);
+    max-width: 100%;
+  }
+}

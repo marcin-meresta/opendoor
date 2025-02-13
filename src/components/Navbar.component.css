@@ -1,0 +1,53 @@
+.app-main-header {
+  display: block;
+  width: 100%;
+  box-shadow: rgba(68, 89, 109, 0.15) 0px 1px 4px 0px;
+
+  .app-main-header-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .app-main-header-content {
+      height: 78px;
+      width: 100%;
+      max-width: 80vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      margin: auto 0;
+
+      .spacing-11-px {
+        margin: 0 11px;
+      }
+
+      .app-main-header-search,
+      .app-main-header-logo,
+      .app-main-header-links {
+        flex: 1;
+      }
+
+      .app-main-header-search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .app-main-header-links {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        align-content: center;
+      }
+
+      .app-main-header-links-more-list {
+        position: absolute;
+        z-index: 100;
+        visibility: hidden;
+      }
+    }
+  }
+}

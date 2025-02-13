@@ -1,0 +1,29 @@
+.app-listing-container {
+  display: flex;
+  flex-basis: 100%;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  .app-listing-carousel {
+    flex: 1;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .app-listing-description {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 32px;
+    h1 {
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 28px;
+      font-family: Graphik-Semibold;
+    }
+  }
+}

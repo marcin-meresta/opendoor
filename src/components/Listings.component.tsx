@@ -1,27 +1,35 @@
+import './Listings.component.css';
+import { useEffect, useState } from 'react';
 import { Listing } from './listings/Listings.types';
+import FiltersComponent from './filters/Filters.component';
 import ListingComponent from './listings/Listing.component';
 
-interface ListingsComponentParams {
-  listings: Listing[];
-}
+import dataMock from './../../get-listings.json';
 
-const ListingsComponent = ({ listings }: ListingsComponentParams) => {
+const ListingsComponent = () => {
+  const [listings, setListings] = useState<Listing[]>([]);
+  const [filteredListings, setFilteredListings] = useState<Listing[]>([]);
+
+  const wrapListings = (items: Listing[]) => items.map((item: Listing) => <ListingComponent listing={item} key={item._id} />);
+  const getItems = () => {
+    if (filteredListings.length < 3) {
+      return wrapListings(filteredListings);
+    }
+    return wrapListings([filteredListings[0], filteredListings[1]]).concat(
+      <p key={'__intersection__'}>Make your strongest offer when you buy with Opendoor</p>,
+      wrapListings(filteredListings.slice(2)),
+    );
+  };
+
+  useEffect(() => {
+    setListings(dataMock.deals);
+  }, []);
+
   return (
     <>
-      <div>
-        <h1>Homes for sale in Tampa</h1>
-        <div>522 listings found — Listed on the MLS. Provided by Opendoor Brokerage.</div>
-      </div>
-      <div>
-        <ul style={{ listStyle: 'none' }}>
-          <li>
-            <span>Make your strongest offer when you buy with Opendoor</span>
-          </li>
-          {listings.map((filteredListing: Listing) => (
-            <ListingComponent listing={filteredListing} key={filteredListing._id} />
-          ))}
-          <li></li>
-        </ul>
+      <div className="app-listings-container">
+        <FiltersComponent listings={listings} onChange={(filtered: Listing[]) => setFilteredListings(filtered)} />
+        <ul>{getItems()}</ul>
       </div>
     </>
   );
